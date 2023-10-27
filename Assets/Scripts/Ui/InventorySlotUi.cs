@@ -6,5 +6,6 @@ public class InventorySlotUi : MonoBehaviour
 {
     public Button slotButon;
     public Image itemImage;
-    public TMP_Text stackSizeText;
+    public Image equippedIcon;
+    public TMP_Text stackSizeText;    
 }

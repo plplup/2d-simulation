@@ -1,0 +1,45 @@
+{
+    "name": "UseAction",
+    "maps": [
+        {
+            "name": "InteractAction",
+            "id": "3d0c3af8-c949-4f8e-8050-90f9860d3274",
+            "actions": [
+                {
+                    "name": "Use",
+                    "type": "Button",
+                    "id": "6eedd306-808e-4c82-9138-075f0f30060e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8e8ab110-6fd7-4934-9848-ddfb9164ccca",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c19ccec-6cdd-47ec-807c-40be9f39bba6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
