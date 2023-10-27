@@ -83,10 +83,11 @@ public class CursorController : MonoBehaviour
             switch (cursorType)
             {
                 case CursorType.Interact:
-                    Cursor.SetCursor(InteractCursor, Vector2.zero, CursorMode.Auto);
+                    Cursor.SetCursor(InteractCursor, Vector2.one * 7, CursorMode.Auto);
                     break;
                 case CursorType.Normal:
-                    Cursor.SetCursor(NormalCursor, Vector2.zero, CursorMode.Auto);
+                    //hotspot position changed because brackeys cursor image is too small
+                    Cursor.SetCursor(NormalCursor, Vector2.one * 7, CursorMode.Auto);
                     break;
                 case CursorType.System:
                     Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
