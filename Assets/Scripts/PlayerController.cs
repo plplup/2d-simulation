@@ -3,7 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header ("Reference settings")]
     [SerializeField] private InputActionAsset inputActionAsset;
+    [SerializeField] private SpriteRenderer hatRenderer;
+    [SerializeField] private SpriteRenderer shirtRenderer;
+    [SerializeField] private SpriteRenderer pantsRenderer;
+    [Header("Controllable Variables")]
     [SerializeField] private float speed = 2f;
 
     private Animator animator;
@@ -17,10 +22,20 @@ public class PlayerController : MonoBehaviour
     private int AnimLastMoveY = Animator.StringToHash("AnimLastMoveY");
     private int AnimIsMoving = Animator.StringToHash("AnimIsMoving");
 
+    public CoinController CoinController { get; set; }
+    public InventorySystem InventorySystem { get; set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        InventorySystem = GetComponent<InventorySystem>();
+        CoinController = GetComponent<CoinController>();
+
+        if (InventorySystem != null )
+        {
+            InventorySystem.Initialize();
+        }
 
         GameManager.Instance.SetPlayerController(this);
     }
@@ -59,7 +74,52 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(AnimLastMoveX, lastMovement.x);
         animator.SetFloat(AnimLastMoveY, lastMovement.y);
         animator.SetBool(AnimIsMoving, moveDirection.magnitude > 0.1f);
+    }
 
+    public void UnequipItem(Equipment equipment)
+    {
+        switch (equipment.Type)
+        {
+            case EquipmentType.Hat:
+                {
+                    hatRenderer.gameObject.SetActive(false);
+                }
+                break;
+            case EquipmentType.Shirt:
+                {
+                    shirtRenderer.gameObject.SetActive(false);
+                }
+                break;
+            case EquipmentType.Pants:
+                {
+                    pantsRenderer.gameObject.SetActive(false);
+                }
+                break;
+        }
+    }
 
+    public void EquipItem(Equipment equipment)
+    {
+        switch (equipment.Type)
+        {
+            case EquipmentType.Hat:
+                {
+                    hatRenderer.sprite = equipment.VisualItemSprite;
+                    hatRenderer.gameObject.SetActive(true);
+                }
+                break;
+            case EquipmentType.Shirt:
+                {
+                    shirtRenderer.sprite = equipment.VisualItemSprite;
+                    shirtRenderer.gameObject.SetActive(true);
+                }
+                break;
+            case EquipmentType.Pants:
+                {
+                    pantsRenderer.sprite = equipment.VisualItemSprite;
+                    pantsRenderer.gameObject.SetActive(true);
+                }
+                break;
+        }
     }
 }

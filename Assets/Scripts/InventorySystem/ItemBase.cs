@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "New Item", menuName = "Items/Generic Item")]
 public class ItemBase : BaseScriptableObject
 {
     public string DisplayName;
@@ -9,5 +11,6 @@ public class ItemBase : BaseScriptableObject
     public int Price;
 
     public GameObject VisualPrefab;
+    public Sprite VisualItemSprite;
 
 }

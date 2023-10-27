@@ -11,5 +11,4 @@ public enum EquipmentType
 public class Equipment : ItemBase
 {
     public EquipmentType Type;
-    public bool IsEquipped;
 }
