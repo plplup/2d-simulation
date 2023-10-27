@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer hatRenderer;
     [SerializeField] private SpriteRenderer shirtRenderer;
     [SerializeField] private SpriteRenderer pantsRenderer;
+    [SerializeField] private Animator hatAnimator;
+
     [Header("Controllable Variables")]
     [SerializeField] private float speed = 2f;
 
@@ -73,6 +75,15 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(AnimLastMoveX, lastMovement.x);
         animator.SetFloat(AnimLastMoveY, lastMovement.y);
         animator.SetBool(AnimIsMoving, moveDirection.magnitude > 0.1f);
+
+        if (hatAnimator.gameObject.activeSelf == true)
+        {
+            hatAnimator.SetFloat(AnimMoveX, animator.GetFloat(AnimMoveX));
+            hatAnimator.SetFloat(AnimMoveY, animator.GetFloat(AnimMoveY));
+            hatAnimator.SetFloat(AnimLastMoveX, animator.GetFloat(AnimLastMoveX));
+            hatAnimator.SetFloat(AnimLastMoveY, animator.GetFloat(AnimLastMoveY));
+            hatAnimator.SetBool(AnimIsMoving, animator.GetBool(AnimIsMoving));
+        }
     }
 
     public void UnequipItem(Equipment equipment)
@@ -104,6 +115,7 @@ public class PlayerController : MonoBehaviour
             case EquipmentType.Hat:
                 {
                     hatRenderer.sprite = equipment.VisualItemSprite;
+                    hatAnimator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(equipment.AnimatorControllerPath);
                     hatRenderer.gameObject.SetActive(true);
                 }
                 break;

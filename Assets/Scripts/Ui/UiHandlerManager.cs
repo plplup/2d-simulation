@@ -11,6 +11,7 @@ public class UiHandlerManager : MonoBehaviour
     [SerializeField] private StoreUiPresenter storeUiPresenter;
     [SerializeField] private GameUiPresenter gameUiPresenter;
     [SerializeField] private Image fadeImage;
+    [SerializeField] private GameObject exiteGamePanel;
 
     private StateManager uiStateManager;
 
@@ -38,7 +39,7 @@ public class UiHandlerManager : MonoBehaviour
         {
             fadeImage.gameObject.SetActive(false);
             GameManager.Instance.ToggleAllInput(true);
-        });
+        }).SetDelay(2f);
     }
 
     public void OpenStore(Store store = null)
@@ -62,5 +63,17 @@ public class UiHandlerManager : MonoBehaviour
     public void InventoryChanged(InventorySystem inventory)
     {
         inventoryUiPresenter.UpdateInventory(inventory);
+    }
+
+    public void ShowExitGame()
+    {
+        GameManager.Instance.Player.ToggleInput(false);
+        exiteGamePanel.gameObject.SetActive(true);
+    }
+
+    public void CancelExit()
+    {
+        GameManager.Instance.Player.ToggleInput(true);
+        exiteGamePanel.gameObject.SetActive(false);
     }
 }

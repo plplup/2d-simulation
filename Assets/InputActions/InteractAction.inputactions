@@ -1,5 +1,5 @@
 {
-    "name": "UseAction",
+    "name": "InteractAction",
     "maps": [
         {
             "name": "InteractAction",
@@ -9,6 +9,15 @@
                     "name": "Use",
                     "type": "Button",
                     "id": "6eedd306-808e-4c82-9138-075f0f30060e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "05dd5031-6c65-4778-9c83-96d01d37ad25",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -35,6 +44,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e71537a-462b-4544-a250-f9c053148834",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

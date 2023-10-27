@@ -20,5 +20,5 @@ MonoBehaviour:
   Price: 50
   VisualPrefab: {fileID: 0}
   VisualItemSprite: {fileID: -391672046, guid: c37e06ac0066a9648ada638934b20ba0, type: 3}
+  AnimatorControllerPath: Animators/WizardHatController
   Type: 0
-  IsEquipped: 0

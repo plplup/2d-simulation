@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,12 +7,20 @@ public class GameManager : MonoBehaviour
 
     [Header ("Reference Settings")]
     [SerializeField] private CursorController cursorController;
+    [SerializeField] private InputActionAsset inputActionsAsset;
+
+    private InputAction escapeAction;
 
     public PlayerController Player { get; private set; }
 
     private void Awake()
     {
         Instance = this;
+
+        escapeAction = inputActionsAsset.FindAction("InteractAction/Escape");
+        escapeAction.Enable();
+
+        escapeAction.performed += context => UiHandlerManager.Instance.ShowExitGame();
 
         Layers.Initialize();
     }
@@ -38,5 +47,10 @@ public class GameManager : MonoBehaviour
             Player.ToggleInput(false);
             cursorController.ToggleInput(false);
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

@@ -13,4 +13,5 @@ public class ItemBase : BaseScriptableObject
     public GameObject VisualPrefab;
     public Sprite VisualItemSprite;
 
+    public string AnimatorControllerPath;
 }
