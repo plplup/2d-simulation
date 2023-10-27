@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private int AnimLastMoveY = Animator.StringToHash("AnimLastMoveY");
     private int AnimIsMoving = Animator.StringToHash("AnimIsMoving");
 
+    private bool isInputEnabled = false;
+
     public CoinController CoinController { get; set; }
     public InventorySystem InventorySystem { get; set; }
 
@@ -32,16 +34,6 @@ public class PlayerController : MonoBehaviour
         InventorySystem = GetComponent<InventorySystem>();
         CoinController = GetComponent<CoinController>();
 
-        if (InventorySystem != null )
-        {
-            InventorySystem.Initialize();
-        }
-
-        GameManager.Instance.SetPlayerController(this);
-    }
-
-    private void Start()
-    {
         if (inputActionAsset == null)
         {
             Debug.LogError("Input Action Asset missing on PlayerController");
@@ -50,6 +42,13 @@ public class PlayerController : MonoBehaviour
 
         moveAction = inputActionAsset.FindAction("Player/Move");
         moveAction.Enable();
+
+        if (InventorySystem != null )
+        {
+            InventorySystem.Initialize();
+        }
+
+        GameManager.Instance.SetPlayerController(this);
     }
 
     private void FixedUpdate()
@@ -120,6 +119,20 @@ public class PlayerController : MonoBehaviour
                     pantsRenderer.gameObject.SetActive(true);
                 }
                 break;
+        }
+    }
+
+    public void ToggleInput(bool enable)
+    {
+        isInputEnabled = enable;
+
+        if (isInputEnabled == true)
+        {
+            moveAction.Enable();
+        }
+        else
+        {
+            moveAction.Disable();
         }
     }
 }

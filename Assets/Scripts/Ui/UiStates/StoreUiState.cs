@@ -13,11 +13,15 @@ public class StoreUiState : IStateUi
     {        
         inventoryUiPresenter.Disable();
         storeUiPresenter.Enable();
+
+        GameManager.Instance.Player.ToggleInput(false);
     }
 
     public void Exit()
     {
         inventoryUiPresenter.Enable();
         storeUiPresenter.Disable();
+
+        GameManager.Instance.Player.ToggleInput(true);
     }
 }

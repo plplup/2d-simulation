@@ -1,4 +1,6 @@
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiHandlerManager : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class UiHandlerManager : MonoBehaviour
     [SerializeField] private InventoryUiPresenter inventoryUiPresenter;
     [SerializeField] private StoreUiPresenter storeUiPresenter;
     [SerializeField] private GameUiPresenter gameUiPresenter;
+    [SerializeField] private Image fadeImage;
 
     private StateManager uiStateManager;
 
@@ -26,6 +29,16 @@ public class UiHandlerManager : MonoBehaviour
         uiStateManager.AddState(new StoreUiState(storeUiPresenter, inventoryUiPresenter));
 
         uiStateManager.GoToState<DefaultUiState>();
+
+        GameManager.Instance.ToggleAllInput(false);
+
+        fadeImage.gameObject.SetActive(true);
+
+        fadeImage.DOFade(0, 1.5f).From(.9f).OnComplete(() =>
+        {
+            fadeImage.gameObject.SetActive(false);
+            GameManager.Instance.ToggleAllInput(true);
+        });
     }
 
     public void OpenStore(Store store = null)

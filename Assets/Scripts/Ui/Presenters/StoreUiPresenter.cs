@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 public class StoreUiPresenter : UiPresenterBase
 {
     [Header("Reference Settings")]
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Transform mainPanel;
     [SerializeField] private Transform itemBuyTransformParent;
     [SerializeField] private ItemBuyUi itemBuyUiPrefab;
     [SerializeField] private ItemSellUi itemSellUiPrefab;
@@ -12,6 +15,11 @@ public class StoreUiPresenter : UiPresenterBase
     [SerializeField] private Button closeButton;
     [SerializeField] private Button buyTabButton;
     [SerializeField] private Button sellTabButton;
+
+    [Header("Store Panel Tween Variables")]
+    [SerializeField] private float scaleDuration = .5f;
+    [SerializeField] private float fadeDuration = .4f;
+    [SerializeField] private Ease scaleEase;
 
     private Store currentStore = null;
 
@@ -53,6 +61,11 @@ public class StoreUiPresenter : UiPresenterBase
     public override void Enable()
     {
         base.Enable();
+
+        DOTween.Sequence()
+            .Append(backgroundImage.DOFade(0.7f, fadeDuration).From(0))
+            .Insert(fadeDuration / 2, mainPanel.DOScale(Vector3.one, scaleDuration).From(0.2f).SetEase(scaleEase));
+
 
         buyTabButton.interactable = false;
         sellTabButton.interactable = true;

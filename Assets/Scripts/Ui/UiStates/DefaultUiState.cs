@@ -20,7 +20,6 @@ public class DefaultUiState : IStateUi
 
     public void Exit()
     {
-        gameUiPresenter.Disable();
         inventoryUiPresenter.Disable();
     }
 }

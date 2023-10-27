@@ -106,4 +106,16 @@ public class CursorController : MonoBehaviour
         else
             ChangeCursor(currentCursorType);
     }
+
+    public void ToggleInput(bool enable)
+    {
+        if (enable == true)
+        {
+            useItemAction.Enable();
+        }
+        else
+        {
+            useItemAction.Disable();
+        }
+    }
 }
