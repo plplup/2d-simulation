@@ -35,11 +35,11 @@ public class UiHandlerManager : MonoBehaviour
 
         fadeImage.gameObject.SetActive(true);
 
-        fadeImage.DOFade(0, 1.5f).From(.9f).OnComplete(() =>
+        fadeImage.DOFade(0, 1.5f).From(.95f).OnComplete(() =>
         {
             fadeImage.gameObject.SetActive(false);
             GameManager.Instance.ToggleAllInput(true);
-        }).SetDelay(2f);
+        }).SetDelay(.5f);
     }
 
     public void OpenStore(Store store = null)
