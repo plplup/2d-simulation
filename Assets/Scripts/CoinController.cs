@@ -16,6 +16,12 @@ public class CoinController : MonoBehaviour
 
     public Action CoinChange;
 
+    private void Awake()
+    {
+        //to test
+        AddCoin(50);
+    }
+
     public void AddCoin(int amount)
     {
         TotalCoin += amount;
